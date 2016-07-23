@@ -1,0 +1,49 @@
+package cn.terminus.mapper.interceptor.sqlsource;
+
+import cn.terminus.mapper.interceptor.PageHelper;
+import cn.terminus.mapper.interceptor.parser.OrderByParser;
+import org.apache.ibatis.builder.StaticSqlSource;
+import org.apache.ibatis.mapping.BoundSql;
+import org.apache.ibatis.mapping.ParameterMapping;
+import org.apache.ibatis.mapping.SqlSource;
+import org.apache.ibatis.reflection.MetaObject;
+import org.apache.ibatis.reflection.SystemMetaObject;
+import org.apache.ibatis.session.Configuration;
+
+import java.util.List;
+
+/**
+ * 描述信息
+ *
+ * @author xuguosheng based on https://github.com/abel533/Mapper
+ * @since 2015-06-26
+ */
+public class OrderByStaticSqlSource implements SqlSource {
+    private String sql;
+    private List<ParameterMapping> parameterMappings;
+    private Configuration configuration;
+    private SqlSource original;
+
+    @SuppressWarnings("unchecked")
+    public OrderByStaticSqlSource(StaticSqlSource sqlSource) {
+        MetaObject metaObject = SystemMetaObject.forObject(sqlSource);
+        this.sql = (String) metaObject.getValue("sql");
+        this.parameterMappings = (List<ParameterMapping>) metaObject.getValue("parameterMappings");
+        this.configuration = (Configuration) metaObject.getValue("configuration");
+        this.original = sqlSource;
+    }
+
+    public BoundSql getBoundSql(Object parameterObject) {
+        String orderBy = PageHelper.getOrderBy();
+        String tempSql = sql;
+        if (orderBy != null) {
+            tempSql = OrderByParser.converToOrderBySql(sql, orderBy);
+        }
+        return new BoundSql(configuration, tempSql, parameterMappings, parameterObject);
+    }
+
+    public SqlSource getOriginal() {
+        return original;
+    }
+
+}

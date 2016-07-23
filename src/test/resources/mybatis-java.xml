@@ -36,7 +36,7 @@
     </settings>
 
     <typeAliases>
-        <package name="tk.mybatis.mapper.model"/>
+        <package name="cn.terminus.mapper.model"/>
     </typeAliases>
 
     <environments default="development">
@@ -62,19 +62,18 @@
 
     <mappers>
         <mapper resource="CachedCountryMapper.xml"/>
-        <mapper class="tk.mybatis.mapper.mapper.CountryMapper"/>
-        <mapper class="tk.mybatis.mapper.mapper.Country2Mapper"/>
-        <mapper class="tk.mybatis.mapper.mapper.CountryTMapper"/>
-        <mapper class="tk.mybatis.mapper.mapper.CountryUMapper"/>
-        <mapper class="tk.mybatis.mapper.mapper.CountryJDBCMapper"/>
-        <mapper class="tk.mybatis.mapper.mapper.CountryIMapper"/>
-        <mapper class="tk.mybatis.mapper.mapper.UserInfoMapper"/>
-        <mapper class="tk.mybatis.mapper.mapper.UserInfoAbleMapper"/>
-        <mapper class="tk.mybatis.mapper.mapper.UserInfoMapMapper"/>
-        <mapper class="tk.mybatis.mapper.mapper.UserLoginMapper"/>
-        <mapper class="tk.mybatis.mapper.mapper.UserLogin2Mapper"/>
-        <mapper class="tk.mybatis.mapper.mapper.JDBCMapper"/>
-
+        <mapper class="cn.terminus.mapper.mapper.CountryMapper"/>
+        <mapper class="cn.terminus.mapper.mapper.Country2Mapper"/>
+        <mapper class="cn.terminus.mapper.mapper.CountryTMapper"/>
+        <mapper class="cn.terminus.mapper.mapper.CountryUMapper"/>
+        <mapper class="cn.terminus.mapper.mapper.CountryJDBCMapper"/>
+        <mapper class="cn.terminus.mapper.mapper.CountryIMapper"/>
+        <mapper class="cn.terminus.mapper.mapper.UserInfoMapper"/>
+        <mapper class="cn.terminus.mapper.mapper.UserInfoAbleMapper"/>
+        <mapper class="cn.terminus.mapper.mapper.UserInfoMapMapper"/>
+        <mapper class="cn.terminus.mapper.mapper.UserLoginMapper"/>
+        <mapper class="cn.terminus.mapper.mapper.UserLogin2Mapper"/>
+        <mapper class="cn.terminus.mapper.mapper.JDBCMapper"/>
     </mappers>
 
 </configuration>

@@ -42,7 +42,7 @@
 - 解决数据越界bug#73
 - 解决and少空格问题
 - 解决order by错误#74
-- `tk.mybatis.spring.mapper.MapperScannerConfigurer`中的属性`mapperHelper`增加setter和getter方法，方便通过代码进行配置
+- `cn.terminus.spring.mapper.MapperScannerConfigurer`中的属性`mapperHelper`增加setter和getter方法，方便通过代码进行配置
 
 ##3.3.1 - 2015-12-09
 
@@ -54,7 +54,7 @@
   产生的结果就是`#{propertyName, javaType=java.lang.Integer}`这样子的，这会导致当你调用方法时，必须保证类型一致。
   也就是假设主键是`Integer id`，调用`selectByPrimaryKey(Object id)`的时候，参数`id`必须使用`100`这样的数字，不能使用`"100"`字符串（以前版本可以）。
   如果不带`javaType`，那么如果`id`是个泛型，MyBatis查找的时候就会因为找不到正确的类型而抛出异常。
-- 为了让扩展更方便，将`tk.mybatis.mapper.provider`包下所有的通用接口的实现方法改为了`String`形式。
+- 为了让扩展更方便，将`cn.terminus.mapper.provider`包下所有的通用接口的实现方法改为了`String`形式。
   自己扩展单表操作的方法是非常容易的事情，建议有一定通用Mapper使用基础的自行扩展，扩展可以参考[如何扩展通用接口](http://git.oschina.net/free/Mapper/blob/master/wiki/mapper3/6.MyMapper.md)
 - 新增`SqlHelper`工具类，其中包含了大量可用的现成的SQL方法
 - `@Column`注解增加对`insertable`和`updatable`属性的支持
@@ -84,7 +84,7 @@
 
 ##3.2.2 - 2015-09-19
 
-* 和Spring集成时，允许通过`markerInterface`属性配置通用接口（注意该属性的原有作用不变），想要让该接口自动注册，该接口就需要继承`tk.mybatis.mapper.common.Marker`接口，`Mapper<T>`默认继承该接口，所以如果自己的接口是继承`Mapper<T>`的，不需要再继承。
+* 和Spring集成时，允许通过`markerInterface`属性配置通用接口（注意该属性的原有作用不变），想要让该接口自动注册，该接口就需要继承`cn.terminus.mapper.common.Marker`接口，`Mapper<T>`默认继承该接口，所以如果自己的接口是继承`Mapper<T>`的，不需要再继承。
 * 解决注册默认接口时存在的bug
 
 ##3.2.1 - 2015-09-02
@@ -96,18 +96,18 @@
 
 * 移除`MapperInterceptor`拦截器，以后不能在通过拦截器配置
 * 增加mybatis-spring特殊支持，主要是根据mybatis-spring项目增加了下面两个类：
-   - `tk.mybatis.spring.mapper.MapperScannerConfigurer`
-   - `tk.mybatis.spring.mapper.MapperFactoryBean`
+   - `cn.terminus.spring.mapper.MapperScannerConfigurer`
+   - `cn.terminus.spring.mapper.MapperFactoryBean`
 * 这两个类和MyBatis提供的区别是增加了MapperHelper属性，通过在`MapperScannerConfigurer`中使用`properties`属性注入配置
-* 这两个类，在全名上和MyBatis的区别是`org.mybatis.xxx`改为了`tk.mybatis.xxx`，名字相近，更方便修改配置
+* 这两个类，在全名上和MyBatis的区别是`org.mybatis.xxx`改为了`cn.terminus.xxx`，名字相近，更方便修改配置
 * 和Spring集成方法：
 
 ```xml
-<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+<bean class="cn.terminus.spring.mapper.MapperScannerConfigurer">
     <property name="basePackage" value="com.isea533.mybatis.mapper"/>
     <property name="properties">
         <value>
-            mappers=tk.mybatis.mapper.common.Mapper
+            mappers=cn.terminus.mapper.common.Mapper
         </value>
     </property>
 </bean>
@@ -142,8 +142,8 @@
 
 ##3.1.0 - 2015-06-10
 
-* 基础包名从`com.github.abel533`改为`tk.mybatis.mapper`
-* Maven的groupId改为`tk.mybatis`,artifactId为`mapper`
+* 基础包名从`com.github.abel533`改为`cn.terminus.mapper`
+* Maven的groupId改为`cn.terminus`,artifactId为`mapper`
 * 增加和Example功能类似的Condition查询，仅仅名字不同
 * 更多详细变化请看[Mapper3通用接口大全](http://git.oschina.net/free/Mapper/blob/master/wiki/mapper3/5.Mappers.md)
 * 关于3.0.x版本请看[Mapper3.0.x](http://git.oschina.net/free/Mapper/tree/Mapper3.0.x/)
