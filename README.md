@@ -174,7 +174,7 @@ public class ShopAddressSerivice {
 
 ## showcase
 
-一个mapper的showcase <https://github.com/appsoner/mapper-showcase
+一个mapper的showcase <https://github.com/appsoner/mapper-showcase>
 
 ## ps 
 项目参考 <https://github.com/abel533/Mapper>
