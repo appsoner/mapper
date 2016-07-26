@@ -43,7 +43,7 @@ public interface ShopAddressMapper extends Mapper<ShopAddressMapper> {
 
 2. 表名可以使用`@Table(name = "tableName")`进行指定,对不符合第一条默认规则的可以通过这种方式指定表名.
 
-3. 字段默认和`@Column`一样,都会作为表字段,表字段默认为Java对象的`Field`名字驼峰转下划线形式.
+3. 字段默认和`@Column`一样,都会作为表字段,表字段默认为Java对象的`Field`名字驼峰转下划小写线形式.
 
 4. 可以使用`@Column(name = "fieldName")`指定不符合第3条规则的字段名
 
