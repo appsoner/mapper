@@ -16,8 +16,9 @@
 
 ```yml
 mapper:
-  basePackage: com.domain.dao 
-  //扫描mapper的位置，多个可以进行逗号分隔，或com.(domain|domain1|domain2).dao
+  basePackage: com.domain.dao //扫描mapper的位置，多个可以进行逗号分隔，或com.(domain|domain1|domain2).dao
+  identity: mysql//mysql可以不写为默认值,若为oracle则需声明
+  dialect: mysql//mysql可以不写,其他数据库需要声明
 ```
 
 ## 2. 在`basePackage`指定的包下创建mapper,并继承通用的`Mapper<T>`,必须指定泛型`<T>`
