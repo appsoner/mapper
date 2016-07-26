@@ -140,19 +140,23 @@ public class ShopAddressSerivice {
 2. `T selectByPrimaryKey(Object key);` 根据主键查询
 3. `List<T> selectAll();` 查询所有纪录
 4. `List<T> selectByExample(Object example)` 根据`example`对象进行查询
+
 ##分页查询
 1. `PageBean<T> pagingByExample(Example example,  Integer pageNo, Integer pageSize);`
 根据`example`进行分页查询
 2. `PageBean<T> pagingByEntity(Object entity, I3. nteger pageNo, Integer pageSize);`
 根据实体类中的非空字段进行分页查询
 3.`PageBean`是一个分页bean，通过`PageBean`的`getPaging()`方法可以得到`package io.terminus.common.model;`的`Paging`对象
+
 ##插入
 1.`int insert(T record)`;
 为空的字段将被忽略
 2. `int insertList(List<T> recordList);`
+
 ##更新
 1.`int updateByPrimaryKey(T record);`根据主键更新，为空的字段忽略
 2.`int updateByExample(T record, Object example);`根据`example`条件进行更新，忽略`record`中为空的字段
+
 ##删除
 1.`int delete(T record);`根据非空属性进行删除
 2.`int deleteByPrimaryKey(Object key);`根据主键进行删除
