@@ -24,6 +24,7 @@
 
 package io.terminus.mapper.common.base.select;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.SelectProvider;
 import io.terminus.mapper.provider.base.BaseSelectProvider;
 
@@ -44,6 +45,6 @@ public interface SelectMapper<T> {
      * @return
      */
     @SelectProvider(type = BaseSelectProvider.class, method = "dynamicSQL")
-    List<T> select(T record);
+    List<T> select(@Param("entity") T record);
 
 }
