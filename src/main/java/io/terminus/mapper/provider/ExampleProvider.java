@@ -118,18 +118,21 @@ public class ExampleProvider extends MapperTemplate {
         return sql.toString();
     }
 
-    /**
-     * 根据Example更新
-     *
-     * @param ms
-     * @return
-     */
+//    /**
+//     * 根据Example更新
+//     *
+//     * @param ms
+//     * @return
+//     */
+//    public String updateByExample(MappedStatement ms) {
+//        Class<?> entityClass = getEntityClass(ms);
+//        StringBuilder sql = new StringBuilder();
+//        sql.append(SqlHelper.updateTable(entityClass, tableName(entityClass), "example"));
+//        sql.append(SqlHelper.updateSetColumns(entityClass, "record", false, false));
+//        sql.append(SqlHelper.updateByExampleWhereClause());
+//        return sql.toString();
+//    }
     public String updateByExample(MappedStatement ms) {
-        Class<?> entityClass = getEntityClass(ms);
-        StringBuilder sql = new StringBuilder();
-        sql.append(SqlHelper.updateTable(entityClass, tableName(entityClass), "example"));
-        sql.append(SqlHelper.updateSetColumns(entityClass, "record", false, false));
-        sql.append(SqlHelper.updateByExampleWhereClause());
-        return sql.toString();
+        return updateByExampleSelective(ms);
     }
 }
