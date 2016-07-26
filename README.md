@@ -1,11 +1,11 @@
 #maven 依赖
 
 ```xml
-        <dependency>
-            <groupId>io.terminus</groupId>
-            <artifactId>mapper</artifactId>
-            <version>1.0.0</version>
-        </dependency>
+<dependency>
+    <groupId>io.terminus</groupId>
+    <artifactId>mapper</artifactId>
+    <version>1.0.0</version>
+</dependency>
 ```
 
 
@@ -20,7 +20,7 @@ mapper:
   //扫描mapper的位置，多个可以进行逗号分隔，或com.(domain|domain1|domain2).dao
 ```
 
-##2. 继承通用的`Mapper<T>`,必须指定泛型`<T>`
+## 2. 在`basePackage`指定的包下创建mapper,并继承通用的`Mapper<T>`,必须指定泛型`<T>`
 
 例如下面的例子:
 
