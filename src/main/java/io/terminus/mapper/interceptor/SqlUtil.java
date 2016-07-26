@@ -414,8 +414,6 @@ public class SqlUtil implements Constant {
      */
     private PageBean doProcessPage(Invocation invocation, Page page, Object[] args) throws Throwable {
         PageBean pageBean = new PageBean();
-        //保存RowBounds状态
-//        RowBounds rowBounds = (RowBounds) args[2];
         //获取原始的ms
         MappedStatement ms = (MappedStatement) args[0];
         //判断并处理为PageSqlSource
@@ -427,29 +425,20 @@ public class SqlUtil implements Constant {
         try {
             //忽略RowBounds-否则会进行Mybatis自带的内存分页
             args[2] = RowBounds.DEFAULT;
-            //如果只进行排序 或 pageSizeZero的判断
-//            if (isQueryOnly(page)) {
-//                return doQueryOnly(page, invocation);
-//            }
+            page.setCountSignal(Boolean.TRUE);
+            //替换MS
+            args[0] = msCountMap.get(ms.getId());
+            //查询总数
+            Object countResult = invocation.proceed();
+            //还原ms
+            args[0] = ms;
+            //设置总数
+            pageBean.setTotal(Long.valueOf((Integer) ((List) countResult).get(0)));
+            if (pageBean.getTotal() == 0) {
+                pageBean.setData(Lists.newArrayList());
+                return pageBean;
+            }
 
-            //简单的通过total的值来判断是否进行count查询
-//            if (page.isCount()) {
-                page.setCountSignal(Boolean.TRUE);
-                //替换MS
-                args[0] = msCountMap.get(ms.getId());
-                //查询总数
-                Object countResult = invocation.proceed();
-                //还原ms
-                args[0] = ms;
-                //设置总数
-                pageBean.setTotal(Long.valueOf((Integer) ((List) countResult).get(0)));
-                if (pageBean.getTotal() == 0) {
-                    pageBean.setData(Lists.newArrayList());
-                    return pageBean;
-                }
-//            } else {
-//                page.setTotal(-1l);
-//            }
             //pageSize>0的时候执行分页查询，pageSize<=0的时候不执行相当于可能只返回了一个count
             if (pageBean.getTotal() > 0 ){
                 //将参数中的MappedStatement替换为新的qs
